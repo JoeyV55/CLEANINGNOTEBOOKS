@@ -1,0 +1,133 @@
+---
+title: "Smote binary cleaner"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+library(tidyverse)
+config = "unclean_SMOTE"
+hypoth = "H3"
+filtered = "FILTERED"
+```
+
+```{r}
+df = read.csv("Filtered/UNCLEAN_SMOTE/mockito_2_dataset_smote_pr(1, 1)8380.2RandomForest-stop-No-clear-No-stem-No_corpus.csv")
+row.names(df) = NULL
+print(names(df))
+head(df)
+
+oldcleanlabs = c("prNumber","Util","Network","Interpreter","i18n", "Logic","Test","IO","Security","issueNumber","corpus")
+
+uncleanLabels = c("pr","Util","NLP","APM", "Network", "DB","Interpreter", "Error.Handling", "Logging", "Lang", "Data.Structure",  "DevOps", "i18n", "Setup", "Logic", "Microservices", "ML", "Test", "Search", "IO", "UI", "Parser", "Security", "Cloud", "Big.Data", "Event.Handling", "App", "GIS", "corpus")
+
+labels_someCleanSMOTE = c("prNumber","Util","Network","Interpreter","i18n","Logic","Test","IO","Security","App","issueNumber", "corpus")
+
+#df = df %>%
+ # rename(issueNumber = issueNumberissueNumber)
+fileStr = paste("mockito", config, hypoth, "_", filtered, "_selected.csv",sep = "")
+print(fileStr)
+df = df %>% subset(select=labels_someCleanSMOTE)
+write.csv(df, fileStr, row.names = FALSE, quote=FALSE)
+head(df)
+```
+
+```{r}
+df = read.csv("Filtered/UNCLEAN_SMOTE/rxjava_2_dataset_smote_pr(1, 1)8380.2RandomForest-stop-No-clear-No-stem-No_corpus.csv")
+row.names(df) = NULL
+#(df)
+#df = df %>%
+#  rename(issueNumber = issueNumberissueNumber)
+
+cleanoldlabs = c("prNumber","Util","Network","Interpreter","i18n", "Logic","Test","IO","App","corpus")
+
+uncleanLabels = c("pr","Util","NLP","APM", "Network", "DB","Interpreter", "Error.Handling", "Logging", "Lang", "Data.Structure",  "DevOps", "i18n", "Setup", "Logic", "Microservices", "ML", "Test", "Search", "IO", "UI", "Parser", "Security", "Cloud", "Big.Data", "Event.Handling", "App", "GIS", "corpus")
+
+#somecleanSmote
+labels_someCleanSmote = c("prNumber","Util","Network","Interpreter","i18n","Logic","Test","IO","App","corpus")
+
+df = df %>% subset(select=labels_someCleanSmote)
+#head(df)
+fileStr = paste("rxjava", config, hypoth, "_", filtered, "_selected.csv",sep = "")
+print(fileStr)
+
+write.csv(df, fileStr, row.names = FALSE, quote=FALSE, sep = ",")
+
+df = read.csv(fileStr)
+head(df)
+```
+```{r}
+df = read.csv("Filtered/UNCLEAN_SMOTE/jabref_2_dataset_smote_pr(1, 1)8380.2RandomForest-stop-No-clear-No-stem-No_corpus.csv")
+row.names(df) = NULL
+#(names(df))
+#head(df)
+
+#df = df %>%
+#  rename(issueNumber = issueNumberissueNumber)
+
+fileStr = paste("jabRef", config, hypoth, "_", filtered, "_selected.csv",sep = "")
+#print(fileStr)
+
+#cleanLabels = c("pr","Util","Network","Interpreter","i18n", "Logic","Test","IO","Security","corpus")
+
+uncleanLabels = c("pr","Util","NLP","APM", "Network", "DB","Interpreter", "Error.Handling", "Logging", "Lang", "Data.Structure",  "DevOps", "i18n", "Setup", "Logic", "Microservices", "ML", "Test", "Search", "IO", "UI", "Parser", "Security", "Cloud", "Big.Data", "Event.Handling", "App", "GIS", "corpus")
+
+#somecleanSmote
+labels_someCleanSmote = c("prNumber","Util","NLP","APM","Network","DB","Interpreter","Logging","DataStructure","i18n","DevOps","Logic","Microservices","Test","Search","IO","UI","Parser","Security","App","corpus")
+print(names(df))
+
+df = df %>% subset(select=labels_someCleanSmote)
+write.csv(df, fileStr, row.names = FALSE, quote=FALSE)
+df = read.csv(fileStr)
+head(df)
+```
+
+
+
+```{r}
+df = read.csv("Filtered/UNCLEAN_SMOTE/audacity_dataset_smote_pr(1, 1)8950.2RandomForest-stop-No-clear-No-stem-No_smote-Yes_with_corpus.csv")
+row.names(df) = NULL
+print(names(df))
+head(df)
+#df = df %>%
+ # rename(issueNumber = issueNumberissueNumber)
+fileStr = paste("audacity", config, hypoth, "_", filtered, "_selected.csv",sep = "")
+print(fileStr)
+
+#Used in the uncleanSmote
+labels1 = c("prNumber","Util","APM","Network","DB","Error.Handling","Logging","Lang","Data.Structure","i18n","Setup","Logic","IO","UI","Parser","Event.Handling","App","GIS","Multimedia","CG", "corpus")
+
+#Used in somecleanSmote
+labels_someCleanSmote = c("prNumber","Util","Network","DB","Interpreter","i18n", "Logic","Test","IO", "UI","Security", "App","corpus")
+
+df = df %>% subset(select=labels1)
+write.csv(df, fileStr, row.names = FALSE, quote=FALSE)
+df = read.csv(fileStr)
+head(df)
+```
+
+```{r}
+df = read.csv("Filtered/UNCLEAN_SMOTE/powertoys_dataset_smote_pr(1, 1)8950.2RandomForest-stop-No-clear-No-stem-No_smote-Yes_with_corpus.csv")
+row.names(df) = NULL
+print(names(df))
+head(df)
+#df = df %>%
+ # rename(issueNumber = issueNumberissueNumber)
+fileStr = paste("powertoys", config, hypoth, "_", filtered, "_selected.csv",sep = "")
+print(fileStr)
+
+#Used in the uncleanSMOTE
+labels1 = c("prNumber","APM","Interpreter","Logging","Data.Structure","i18n","Setup","Logic","Microservices","Test","Search","UI","Parser","App", "corpus")
+
+#Used in somecleanSmote
+labels_someCleanSmote = c("prNumber","Util","Network","DB","Interpreter","i18n", "Logic","Test","IO", "UI","Security", "App","corpus")
+
+df = df %>% subset(select=labels1)
+write.csv(df, fileStr, row.names = FALSE, quote=FALSE)
+df = read.csv(fileStr)
+head(df)
+```
+
