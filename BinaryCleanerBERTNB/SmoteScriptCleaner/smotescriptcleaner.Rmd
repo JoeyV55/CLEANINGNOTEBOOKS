@@ -11,11 +11,11 @@ Try executing this chunk by clicking the *Run* button within the chunk or by pla
 library(tidyverse)
 config = "unclean_SMOTE"
 hypoth = "H3"
-filtered = "FILTERED"
+filtered = "UNFILTERED"
 ```
 
 ```{r}
-df = read.csv("Filtered/UNCLEAN_SMOTE/mockito_2_dataset_smote_pr(1, 1)8380.2RandomForest-stop-No-clear-No-stem-No_corpus.csv")
+df = read.csv("Unfiltered/UNCLEAN_SMOTE/mockito_2_dataset_smote_pr(1, 1)8380.2RandomForest-stop-No-clear-No-stem-No_corpus.csv")
 row.names(df) = NULL
 print(names(df))
 head(df)
@@ -36,7 +36,7 @@ head(df)
 ```
 
 ```{r}
-df = read.csv("Filtered/UNCLEAN_SMOTE/rxjava_2_dataset_smote_pr(1, 1)8380.2RandomForest-stop-No-clear-No-stem-No_corpus.csv")
+df = read.csv("Unfiltered/UNCLEAN_SMOTE/rxjava_2_dataset_smote_pr(1, 1)8380.2RandomForest-stop-No-clear-No-stem-No_corpus.csv")
 row.names(df) = NULL
 #(df)
 #df = df %>%
@@ -60,7 +60,7 @@ df = read.csv(fileStr)
 head(df)
 ```
 ```{r}
-df = read.csv("Filtered/UNCLEAN_SMOTE/jabref_2_dataset_smote_pr(1, 1)8380.2RandomForest-stop-No-clear-No-stem-No_corpus.csv")
+df = read.csv("Unfiltered/UNCLEAN_SMOTE/jabref_2_dataset_smote_pr(1, 1)8380.2RandomForest-stop-No-clear-No-stem-No_corpus.csv")
 row.names(df) = NULL
 #(names(df))
 #head(df)
@@ -88,7 +88,7 @@ head(df)
 
 
 ```{r}
-df = read.csv("Filtered/UNCLEAN_SMOTE/audacity_dataset_smote_pr(1, 1)8950.2RandomForest-stop-No-clear-No-stem-No_smote-Yes_with_corpus.csv")
+df = read.csv("Unfiltered/UNCLEAN_SMOTE/audacity_dataset_smote_pr(1, 1)8950.2RandomForest-stop-No-clear-No-stem-No_smote-Yes_with_corpus.csv")
 row.names(df) = NULL
 print(names(df))
 head(df)
@@ -110,7 +110,7 @@ head(df)
 ```
 
 ```{r}
-df = read.csv("Filtered/UNCLEAN_SMOTE/powertoys_dataset_smote_pr(1, 1)8950.2RandomForest-stop-No-clear-No-stem-No_smote-Yes_with_corpus.csv")
+df = read.csv("Unfiltered/UNCLEAN_SMOTE/powertoys_dataset_smote_pr(1, 1)8950.2RandomForest-stop-No-clear-No-stem-No_smote-Yes_with_corpus.csv")
 row.names(df) = NULL
 print(names(df))
 head(df)
@@ -131,3 +131,67 @@ df = read.csv(fileStr)
 head(df)
 ```
 
+```{r}
+df = read.csv("Unfiltered/UnfilteredUncleanBinaryTitle/rmca_dataset_smote_pr(1, 1)8950.2RandomForest-stop-No-clean-No-stem-No_smote-Yes_with_corpus.csv")
+row.names(df) = NULL
+print(names(df))
+head(df)
+#df = df %>%
+ # rename(issueNumber = issueNumberissueNumber)
+hypoth = "H1"
+fileStr = paste("rmca", config, hypoth, "_", filtered, "_selected.csv",sep = "")
+print(fileStr)
+
+#Used in the uncleanSMOTE
+labels1 = c("prNumber","APM","Network","DB","Error.Handling","Logging","Lang","Data.Structure","DevOps","i18n","Setup","Microservices","UI","Parser","Security","Big.Data","Event.Handling", "corpus")
+
+#Used in somecleanSmote
+#labels_someCleanSmote = c("prNumber","Util","Network","DB","Interpreter","i18n", "Logic","Test","IO", "UI","Security", "App","corpus")
+
+df = df %>% subset(select=labels1)
+write.csv(df, fileStr, row.names = FALSE, quote=FALSE)
+df = read.csv(fileStr)
+head(df)
+```
+
+```{r}
+df = read.csv("Unfiltered/UnfilteredUncleanBinaryTitle/all_2_dataset_smote_pr(1, 1)8950.2RandomForest-stop-No-clean-No-stem-No_smote-Yes_with_corpus.csv")
+row.names(df) = NULL
+print(names(df))
+head(df)
+#df = df %>%
+ # rename(issueNumber = issueNumberissueNumber)
+hypoth = "H3"
+fileStr = paste("all", config, hypoth, "_", filtered, "_selected.csv",sep = "")
+print(fileStr)
+
+#Used in the uncleanSMOTE
+labels1 = c("prNumber","Util","NLP","APM","Network","DB","Interpreter","Error.Handling","Logging","Lang","Data.Structure","DevOps","i18n","Setup","Logic","Microservices","Test","Search","IO","UI","Parser","Security","Big.Data","Event.Handling","App","Multimedia", "corpus")
+
+
+df = df %>% subset(select=labels1)
+write.csv(df, fileStr, row.names = FALSE, quote=FALSE)
+df = read.csv(fileStr)
+head(df)
+```
+
+```{r}
+df = read.csv("Unfiltered/UnfilteredUncleanBinaryTitle/all_2H10_dataset_smote_pr(1, 1)8950.2RandomForest-stop-No-clean-No-stem-No_smote-Yes_with_corpus.csv")
+row.names(df) = NULL
+print(names(df))
+head(df)
+#df = df %>%
+ # rename(issueNumber = issueNumberissueNumber)
+hypoth = "H3"
+fileStr = paste("rmca_powertoys", config, "H10", "_", filtered, "_selected.csv",sep = "")
+print(fileStr)
+
+#Used in the uncleanSMOTE
+labels1 = c("prNumber","APM","Network","DB","Interpreter","Error.Handling","Logging","Lang","Data.Structure","i18n","Setup","Logic","Microservices","Test","Search","IO","UI","Parser","Security","Big.Data","Event.Handling","App","corpus")
+
+
+df = df %>% subset(select=labels1)
+write.csv(df, fileStr, row.names = FALSE, quote=FALSE)
+df = read.csv(fileStr)
+tail(df)
+```
